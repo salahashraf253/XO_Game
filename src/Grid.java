@@ -32,11 +32,13 @@ public class Grid {
 
     public char isGameEnded(){
         char ans=checkRowsAndColumns();
+        if(ans!='X'&&ans!='O'){
+            ans=checkDiangonals();
+        }
         return ans;
     }
     private char checkRowsAndColumns(){
-        Set<Character> rows = new HashSet<Character>();
-        Set<Character> columns = new HashSet<Character>();
+        Set<Character> rows = new HashSet<Character>() , columns = new HashSet<Character>();
         for(int i=1;i<=3;i++){
             rows.clear();
             columns.clear();
@@ -45,7 +47,6 @@ public class Grid {
                 columns.add(grid[j][i]);
             }
             if(rows.size()==1 && !rows.iterator().next().equals('.')){
-                System.out.println("fdffff   "+rows.iterator().next());
                 return rows.iterator().next();
             }
             if(columns.size()==1 && !columns.iterator().next().equals('.')){
@@ -55,5 +56,19 @@ public class Grid {
         return 'D';
     }
 
-
+    private char checkDiangonals(){
+        Set<Character> diangonal1 = new HashSet<Character>() , diangonal2 = new HashSet<Character>();
+        int j=1,k=3;
+        for(int i=1;i<=3;i++,j++,k--){
+            diangonal1.add(grid[i][j]);
+            diangonal2.add(grid[k][i]);
+        }
+        if(diangonal1.size()==1 && !diangonal1.iterator().next().equals('.')){
+            return diangonal1.iterator().next();
+        }
+        if(diangonal2.size()==1 && !diangonal2.iterator().next().equals('.')){
+            return diangonal2.iterator().next();
+        }
+        return 'D';
+    }
 }
