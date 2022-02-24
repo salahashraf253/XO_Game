@@ -38,9 +38,6 @@ public class Player {
         if(winner==symbol) System.out.println("Player "+(ctr++ % 2 + 1)+" is won");
         else System.out.println("Player "+((ctr++ % 2 + 1 ==1)?2:1 )+" is won");
     }
-//    public static Boolean canPlay() {
-//        System.out.println(",.............."+gridForPlaying.emptyPositions);
-//        return ! (gridForPlaying.emptyPositions == 0);
-//    }
+
 
 }
